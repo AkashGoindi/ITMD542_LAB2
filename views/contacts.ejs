@@ -2,6 +2,6 @@
 
 <ul>
   <% contacts.forEach(function(element){ %>
-    <li><%= element.getName() %></li>
+    <li><a href="/contact/<%= element.id%>"><%= element.getName() %></a></li>
   <% }); %>
 </ul>

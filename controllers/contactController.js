@@ -9,11 +9,18 @@ exports.contact_list = function(req, res, next) {
   res.render('contacts', {title: "All Contacts!", contacts: data, errors: null});
 }
 
-
+exports.contact_details = function(req, res, next) {
+  const contactId = req.params.id;
+  const contact = contactsRepo.findById(contactId);
+  if (contact) {
+    res.render('contact', { title: 'Contact Detail', data: contact });
+  } else {
+    res.redirect('/contacts');
+  }
+}
 
 /* POST contact add */
 exports.create_contact = function (req, res, next) {
-  console.log("req", req.body);
   const result = validationResult(req);
   if (!result.isEmpty()) {
     console.log("Inside ----->", result.array());
