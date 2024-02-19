@@ -5,7 +5,7 @@ const Contact = require('../src/Contact');
 /* GET contact listing. */
 exports.contact_list = function(req, res, next) {
   const data = contactsRepo.findAll();
-  res.render('contacts', {title: "All Contacts!", contacts: data, errors: null});
+  res.render('contacts', {pageTitle: "All Contacts", contacts: data});
 }
 
 exports.contact_details = function(req, res, next) {
