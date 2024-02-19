@@ -18,7 +18,7 @@ router.get('/contacts', contactController.contact_list);
 router.get('/contact/:id', contactController.contact_details);
 
 router.get('/add', function(req, res, next) {
-  res.render('contact_add', {title: "Add New!", errors: null});
+  res.render('contact_add', {pageTitle: "Add New Contact", errors: null});
 });
 
 router.get('/contact/:id/edit', contactController.edit_contact_page);

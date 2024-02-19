@@ -22,7 +22,7 @@ exports.contact_details = function(req, res, next) {
 exports.create_contact = function (req, res, next) {
   const result = validationResult(req);
   if (!result.isEmpty()) {
-    res.render('contact_add', { title: 'Voilaa', errors: result.array() });
+    res.render('contact_add', { pageTitle: "Add New Contact", errors: result.array() });
   } else {
     contactsRepo.create(new Contact('', req.body.firstName, req.body.lastName, req.body.email, req.body.notes));
     res.redirect('/');
