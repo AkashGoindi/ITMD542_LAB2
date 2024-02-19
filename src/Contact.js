@@ -5,6 +5,7 @@ class Contact{
     this.lastName = lastName;
     this.email = email;
     this.notes = notes;
+    this.date = new Date().toLocaleString()
   }
 
   getName() {
