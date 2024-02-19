@@ -2,13 +2,18 @@ const {validationResult} = require('express-validator');
 const contactsRepo = require('../src/contactFileRepo');
 const Contact = require('../src/Contact');
 
-/* GET contact listing. */
-exports.contact_list = function(req, res, next) {
+
+exports.welcome_page = function(req, res, next) {
+  res.render('index', {pageTitle: "Welcome Page"});
+}
+
+/* Read */
+exports.contacts_page = function(req, res, next) {
   const data = contactsRepo.findAll();
   res.render('contacts', {pageTitle: "All Contacts", contacts: data});
 }
 
-exports.contact_details = function(req, res, next) {
+exports.details_page = function(req, res, next) {
   const contactId = req.params.id;
   const contact = contactsRepo.findById(contactId);
   if (contact) {
@@ -18,7 +23,11 @@ exports.contact_details = function(req, res, next) {
   }
 }
 
-/* POST contact add */
+/* Create */
+exports.add_contact_page = function(req, res, next) {
+  res.render('contact_add', {pageTitle: "Add New Contact", errors: null});
+}
+
 exports.create_contact = function (req, res, next) {
   const result = validationResult(req);
   if (!result.isEmpty()) {
@@ -29,6 +38,7 @@ exports.create_contact = function (req, res, next) {
   }
 };
 
+/* Update */
 exports.edit_contact_page = function (req, res, next) {
   const contactId = req.params.id;
   const contact = contactsRepo.findById(contactId);
@@ -48,7 +58,7 @@ exports.edit_contact = function (req, res, next) {
 };
 
 
-/* Delete contact */
+/* Delete */
 exports.delete_contact_page = function (req, res, next) {
   const contactId = req.params.id;
   res.render('contact_delete', {id: contactId});
