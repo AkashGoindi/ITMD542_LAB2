@@ -1,0 +1,31 @@
+
+<h2>Edit Contact Form</h2>
+
+<% if (errors) { %>
+  <ul>
+    <% errors.forEach(function(err){ %>
+      <li><%= err.msg  %></li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<form id="contactForm" action="/add" method="POST">
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" value=<%= data.firstName %>>
+    </div>
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" value=<%= data.lastName %>>
+    </div>
+    <div>
+        <label for="email">Email Address:</label>
+        <input type="text" id="email" name="email" value=<%= data.email %>>
+    </div>
+    <div>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes"><%= data.notes %></textarea>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+

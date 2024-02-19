@@ -16,6 +16,8 @@ router.get('/add', function(req, res, next) {
   res.render('contact_add', {title: "Add New!", errors: null});
 });
 
+router.get('/contact/:id/edit', contactController.edit_contact_page);
+
 router.get('/contact/:id/delete', contactController.delete_contact_page);
 
 router.post('/delete/:id', contactController.delete_contact);
@@ -26,5 +28,7 @@ router.post('/add',
   body('firstName').notEmpty().withMessage("First Name Invalid/Missing"), 
   body('lastName').notEmpty().withMessage("Last Name Invalid/Missing"), 
   contactController.create_contact);
+
+
 
 module.exports = router;

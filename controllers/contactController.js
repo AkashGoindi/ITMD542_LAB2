@@ -30,6 +30,13 @@ exports.create_contact = function (req, res, next) {
   }
 };
 
+
+exports.edit_contact_page = function (req, res, next) {
+  const contactId = req.params.id;
+  const contact = contactsRepo.findById(contactId);
+  res.render('contact_edit', {title: "Edit Contact!", errors: null, data: contact});
+};
+
 /* Delete contact */
 exports.delete_contact_page = function (req, res, next) {
   const contactId = req.params.id;
