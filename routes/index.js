@@ -23,7 +23,11 @@ router.get('/add', function(req, res, next) {
 
 router.get('/contact/:id/edit', contactController.edit_contact_page);
 
-router.post('/edit/:id', contactController.edit_contact);
+router.post('/edit/:id', 
+body('email').isEmail().withMessage("Invalid Email"), 
+body('firstName').notEmpty().withMessage("First Name Invalid/Missing"), 
+body('lastName').notEmpty().withMessage("Last Name Invalid/Missing"), 
+contactController.edit_contact);
 
 router.get('/contact/:id/delete', contactController.delete_contact_page);
 
