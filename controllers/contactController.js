@@ -5,7 +5,6 @@ const Contact = require('../src/Contact');
 /* GET contact listing. */
 exports.contact_list = function(req, res, next) {
   const data = contactsRepo.findAll();
-  console.log("===>", data)
   res.render('contacts', {title: "All Contacts!", contacts: data, errors: null});
 }
 
@@ -30,12 +29,23 @@ exports.create_contact = function (req, res, next) {
   }
 };
 
-
 exports.edit_contact_page = function (req, res, next) {
   const contactId = req.params.id;
   const contact = contactsRepo.findById(contactId);
   res.render('contact_edit', {title: "Edit Contact!", errors: null, data: contact});
 };
+
+exports.edit_contact = function (req, res, next) {
+  const result = validationResult(req);
+  const contactId = req.params.id;
+  if (!result.isEmpty()) {
+    res.render(`contact/${req.params.id}/edit`, { title: 'Chudao', errors: result.array() });
+  } else {
+    contactsRepo.update(new Contact(contactId, req.body.firstName, req.body.lastName, req.body.email, req.body.notes));
+    res.redirect('/contacts');
+  }
+};
+
 
 /* Delete contact */
 exports.delete_contact_page = function (req, res, next) {

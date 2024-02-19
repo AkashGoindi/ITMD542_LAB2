@@ -18,6 +18,8 @@ router.get('/add', function(req, res, next) {
 
 router.get('/contact/:id/edit', contactController.edit_contact_page);
 
+router.post('/edit/:id', contactController.edit_contact);
+
 router.get('/contact/:id/delete', contactController.delete_contact_page);
 
 router.post('/delete/:id', contactController.delete_contact);
