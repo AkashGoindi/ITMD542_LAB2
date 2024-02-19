@@ -33,7 +33,11 @@ exports.create_contact = function (req, res, next) {
   if (!result.isEmpty()) {
     res.render('contact_add', { pageTitle: "Add New Contact", errors: result.array() });
   } else {
-    contactsRepo.create(new Contact('', req.body.firstName, req.body.lastName, req.body.email, req.body.notes));
+    let fname = req.body.firstName.trim();
+    let lname = req.body.lastName.trim();
+    let email = req.body.email ? req.body.email.trim() : "";
+    let notes = req.body.notes ? req.body.notes.trim() : "";
+    contactsRepo.create(new Contact('', fname, lname, email, notes));
     res.redirect('/contacts');
   }
 };
@@ -52,7 +56,13 @@ exports.edit_contact = function (req, res, next) {
   if (!result.isEmpty()) {
     res.render(`contact_edit`, { pageTitle: "Edit Contact", errors: result.array(), data: contact });
   } else {
-    contactsRepo.update(new Contact(contactId, req.body.firstName, req.body.lastName, req.body.email, req.body.notes));
+    let fname = req.body.firstName.trim();
+    let lname = req.body.lastName.trim();
+    let email = req.body.email ? req.body.email.trim() : "";
+    let notes = req.body.notes ? req.body.notes.trim() : "";
+
+    contactsRepo.update(new Contact(contactId, fname, lname, email, notes));
+
     res.redirect('/contacts');
   }
 };
