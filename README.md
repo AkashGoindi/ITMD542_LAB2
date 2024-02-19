@@ -16,6 +16,7 @@ This project is a part of the Lab 2 assignment for the ITMD 442/542 class. It in
 ## Development Environment:
 - **Operating System:** MAC OS
 - **Node.js Version:** 18.17.1
+- **Template Engine:** ejs
 - **Editor:** VS Code
 
 ## Installation/Running Instructions:
