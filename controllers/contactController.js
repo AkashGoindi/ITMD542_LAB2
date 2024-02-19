@@ -23,10 +23,22 @@ exports.contact_details = function(req, res, next) {
 exports.create_contact = function (req, res, next) {
   const result = validationResult(req);
   if (!result.isEmpty()) {
-    console.log("Inside ----->", result.array());
     res.render('contact_add', { title: 'Voilaa', errors: result.array() });
   } else {
     contactsRepo.create(new Contact('', req.body.firstName, req.body.lastName, req.body.email, req.body.notes));
     res.redirect('/');
   }
 };
+
+/* Delete contact */
+exports.delete_contact_page = function (req, res, next) {
+  const contactId = req.params.id;
+  res.render('contact_delete', {id: contactId});
+};
+
+exports.delete_contact = function (req, res, next) {
+  const contactId = req.params.id;
+  contactsRepo.deleteById(contactId);
+  res.redirect('/contacts');
+};
+

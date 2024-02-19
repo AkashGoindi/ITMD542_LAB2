@@ -16,6 +16,10 @@ router.get('/add', function(req, res, next) {
   res.render('contact_add', {title: "Add New!", errors: null});
 });
 
+router.get('/contact/:id/delete', contactController.delete_contact_page);
+
+router.post('/delete/:id', contactController.delete_contact);
+
 /* Add Contact */
 router.post('/add', 
   body('email').isEmail().withMessage("Invalid Email"), 
