@@ -12,7 +12,7 @@ exports.contact_details = function(req, res, next) {
   const contactId = req.params.id;
   const contact = contactsRepo.findById(contactId);
   if (contact) {
-    res.render('contact', { title: 'Contact Detail', data: contact });
+    res.render('contact', { pageTitle: "Contact Details", data: contact });
   } else {
     res.redirect('/contacts');
   }
