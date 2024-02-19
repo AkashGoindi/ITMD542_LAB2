@@ -13,17 +13,17 @@ router.get('/contact/:id', contactController.details_page);
 router.get('/add', contactController.add_contact_page);
 
 router.post('/add', 
-  body('email').isEmail().withMessage("Invalid Email"), 
-  body('firstName').notEmpty().withMessage("First Name Invalid/Missing"), 
-  body('lastName').notEmpty().withMessage("Last Name Invalid/Missing"), 
+  body('email').isEmail().withMessage("Invalid Email Format"), 
+  body('firstName').trim().notEmpty().withMessage("Please fill the First Name!"), 
+  body('lastName').trim().notEmpty().withMessage("Please fill the Name Name!"), 
   contactController.create_contact);
 
 router.get('/contact/:id/edit', contactController.edit_contact_page);
 
 router.post('/edit/:id', 
-body('email').isEmail().withMessage("Invalid Email"), 
-body('firstName').notEmpty().withMessage("First Name Invalid/Missing"), 
-body('lastName').notEmpty().withMessage("Last Name Invalid/Missing"), 
+body('email').isEmail().withMessage("Invalid Email Format"), 
+body('firstName').trim().notEmpty().withMessage("Please fill the First Name!"), 
+body('lastName').trim().notEmpty().withMessage("Please fill the Name Name!"), 
 contactController.edit_contact);
 
 router.get('/contact/:id/delete', contactController.delete_contact_page);

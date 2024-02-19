@@ -20,6 +20,7 @@
       <% } %>
 
       <form 
+        class="mb-4"
         action="/edit/<%= data.id %>" method="POST"
         style="box-shadow:0px 0px 6px #cacaca; border-radius: 12px; padding: 24px">
         <div class="mb-3">
@@ -68,6 +69,11 @@
         </div>
         <button class="btn w-100 btn-md btn-dark" type="submit">Submit</button>
       </form>
+      
+      <div class="d-flex justify-content-end">
+        <a class="btn btn-sm btn-outline-dark" href="/contact/<%= data.id %>">Go Back</a>
+      </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
